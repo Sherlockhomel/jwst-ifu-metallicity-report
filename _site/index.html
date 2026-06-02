@@ -1,0 +1,1722 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="JWST/NIRSpec IFU metallicity-gradient candidate program report">
+  <title>JWST/NIRSpec IFU 金属梯度候选项目</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">JWST / NIRSpec IFU</p>
+      <h1>金属梯度候选项目正式汇总</h1>
+      <p class="subtitle">Resolved metallicity indicators, wavelength coverage, published results, and candidate programs.</p>
+    </div>
+    <div class="header-actions">
+      <a class="download-button" href="assets/report_formal.pdf" download>Download PDF</a>
+      <a class="download-button secondary" href="assets/report_formal.md" download>Download Markdown</a>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">Search report</label>
+      <input id="site-search" type="search" placeholder="Program ID, target, paper title">
+      <p id="search-status" class="search-status" aria-live="polite">33 programs</p>
+      <nav id="table-of-contents" aria-label="Report sections"></nav>
+    </aside>
+    <main id="report-content" class="report-content">
+      <section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>分类采用四类:</p>
+<ul>
+<li>A 类：已有论文利用观测结果得到金属梯度/emission line map;</li>
+<li>B 类：还没有 published 关注金属梯度/line map的非lensed galaxy;</li>
+<li>C 类：还没有 published 关注金属梯度/line map的lensed galaxy;</li>
+<li>D 类：AGN/quasar/radio galaxy candidate,必须做 AGN
+subtraction。</li>
+</ul>
+</section>
+<section id="metallicity-indicators" class="level1">
+<h1>1. Metallicity Indicators</h1>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">indicator</th>
+<th style="text-align: center;">line ratio</th>
+<th style="text-align: left;">strengths</th>
+<th style="text-align: left;">caveats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">N2</td>
+<td style="text-align: center;">[NII]6584/H<span
+class="math inline">\(\alpha\)</span></td>
+<td style="text-align: left;">单调; 距离近、无需消光改正; scatter大</td>
+<td style="text-align: left;">受N/O比例影响</td>
+</tr>
+<tr>
+<td style="text-align: center;">O3N2</td>
+<td style="text-align: center;">([OIII]5007/H<span
+class="math inline">\(\beta\)</span>)/([NII]6584/H<span
+class="math inline">\(\alpha\)</span>)</td>
+<td style="text-align: left;">同上</td>
+<td style="text-align: left;">低金属端失效</td>
+</tr>
+<tr>
+<td style="text-align: center;">R23</td>
+<td style="text-align: center;">([OII]3727+[OIII]4959,5007)/H<span
+class="math inline">\(\beta\)</span></td>
+<td style="text-align: left;">谱线强</td>
+<td style="text-align: left;">double value degeneracy</td>
+</tr>
+<tr>
+<td style="text-align: center;">R3</td>
+<td style="text-align: center;">[OIII]5007/H<span
+class="math inline">\(\beta\)</span></td>
+<td style="text-align: left;">需要的line少，scatter小</td>
+<td style="text-align: left;">简并问题</td>
+</tr>
+<tr>
+<td style="text-align: center;">O2/R2</td>
+<td style="text-align: center;">[OII]3727/H<span
+class="math inline">\(\beta\)</span></td>
+<td style="text-align: left;">同上</td>
+<td style="text-align: left;">Dust correction; [OII] can be weak.</td>
+</tr>
+<tr>
+<td style="text-align: center;">O32</td>
+<td style="text-align: center;">[OIII]4959,5007/[OII]3727</td>
+<td style="text-align: left;">可以打破简并</td>
+<td style="text-align: left;">对电离也敏感，不适合作为唯一指标</td>
+</tr>
+<tr>
+<td style="text-align: center;">Ne3O2</td>
+<td style="text-align: center;">[NeIII]3869/[OII]3727</td>
+<td style="text-align: left;">距离近; 单调</td>
+<td style="text-align: left;">对电离也敏感;</td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: center;">[SII]6717,6731/H<span
+class="math inline">\(\alpha\)</span></td>
+<td style="text-align: left;">同上</td>
+<td style="text-align: left;">scatter很大, 只能作为粗略估计</td>
+</tr>
+<tr>
+<td style="text-align: center;">Te/direct</td>
+<td style="text-align: center;">[OIII]4363/[OIII]4959,5007</td>
+<td style="text-align: left;">Least calibration dependent.</td>
+<td style="text-align: left;">[OIII]4363 is faint</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nirspec-ifu-wavelength-and-redshift-coverage"
+class="level1">
+<h1>2. NIRSpec IFU Wavelength and Redshift Coverage</h1>
+<p>The ranges below use approximate NIRSpec IFU wavelength coverage and
+should be read as line-access windows, not sensitivity guarantees.</p>
+<section id="gratingfilter-wavelength-coverage" class="level2">
+<h2>2.1 Grating/filter wavelength coverage</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">grating/filter</th>
+<th style="text-align: center;">wavelength range (micron)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PRISM/CLEAR</td>
+<td style="text-align: center;">0.60-5.30</td>
+</tr>
+<tr>
+<td style="text-align: center;">G140/F100LP</td>
+<td style="text-align: center;">0.97-1.89</td>
+</tr>
+<tr>
+<td style="text-align: center;">G235/F170LP</td>
+<td style="text-align: center;">1.66-3.17</td>
+</tr>
+<tr>
+<td style="text-align: center;">G395/F290LP</td>
+<td style="text-align: center;">2.87-5.27</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<figure class="coverage-figure">
+  <img src="assets/nirspec-ifu-coverage.png" alt="NIRSpec IFU wavelength coverage and diagnostic line visibility across redshift">
+  <figcaption>NIRSpec IFU wavelength coverage and the observed wavelengths of key rest-optical diagnostic lines.</figcaption>
+</figure>
+
+<section id="single-line-redshift-coverage" class="level2">
+<h2>2.2 Single-line redshift coverage</h2>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">line</th>
+<th style="text-align: center;">rest micron</th>
+<th style="text-align: center;">PRISM/CLEAR</th>
+<th style="text-align: center;">G140/F100LP</th>
+<th style="text-align: center;">G235/F170LP</th>
+<th style="text-align: center;">G395/F290LP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">[OII]3727</td>
+<td style="text-align: center;">0.3727</td>
+<td style="text-align: center;">0.61-13.22</td>
+<td style="text-align: center;">1.60-4.07</td>
+<td style="text-align: center;">3.45-7.51</td>
+<td style="text-align: center;">6.70-13.14</td>
+</tr>
+<tr>
+<td style="text-align: center;">[NeIII]3869</td>
+<td style="text-align: center;">0.3869</td>
+<td style="text-align: center;">0.55-12.70</td>
+<td style="text-align: center;">1.51-3.88</td>
+<td style="text-align: center;">3.29-7.19</td>
+<td style="text-align: center;">6.42-12.62</td>
+</tr>
+<tr>
+<td style="text-align: center;">[OIII]4363</td>
+<td style="text-align: center;">0.4363</td>
+<td style="text-align: center;">0.38-11.15</td>
+<td style="text-align: center;">1.22-3.33</td>
+<td style="text-align: center;">2.80-6.27</td>
+<td style="text-align: center;">5.58-11.08</td>
+</tr>
+<tr>
+<td style="text-align: center;">Hbeta4861</td>
+<td style="text-align: center;">0.4861</td>
+<td style="text-align: center;">0.23-9.90</td>
+<td style="text-align: center;">1.00-2.89</td>
+<td style="text-align: center;">2.41-5.52</td>
+<td style="text-align: center;">4.90-9.84</td>
+</tr>
+<tr>
+<td style="text-align: center;">[OIII]5007</td>
+<td style="text-align: center;">0.5007</td>
+<td style="text-align: center;">0.20-9.59</td>
+<td style="text-align: center;">0.94-2.77</td>
+<td style="text-align: center;">2.32-5.33</td>
+<td style="text-align: center;">4.73-9.53</td>
+</tr>
+<tr>
+<td style="text-align: center;">Halpha6563</td>
+<td style="text-align: center;">0.6563</td>
+<td style="text-align: center;">0.00-7.08</td>
+<td style="text-align: center;">0.48-1.88</td>
+<td style="text-align: center;">1.53-3.83</td>
+<td style="text-align: center;">3.37-7.03</td>
+</tr>
+<tr>
+<td style="text-align: center;">[NII]6584</td>
+<td style="text-align: center;">0.6584</td>
+<td style="text-align: center;">0.00-7.05</td>
+<td style="text-align: center;">0.47-1.87</td>
+<td style="text-align: center;">1.52-3.81</td>
+<td style="text-align: center;">3.36-7.00</td>
+</tr>
+<tr>
+<td style="text-align: center;">[SII]6717/31</td>
+<td style="text-align: center;">0.6720</td>
+<td style="text-align: center;">0.00-6.89</td>
+<td style="text-align: center;">0.44-1.81</td>
+<td style="text-align: center;">1.47-3.72</td>
+<td style="text-align: center;">3.27-6.84</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="indicator-set-redshift-coverage" class="level2">
+<h2>2.3 Indicator-set redshift coverage</h2>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">indicator set</th>
+<th style="text-align: center;">required lines</th>
+<th style="text-align: center;">PRISM/CLEAR</th>
+<th style="text-align: center;">G140/F100LP</th>
+<th style="text-align: center;">G235/F170LP</th>
+<th style="text-align: center;">G395/F290LP</th>
+<th>practical note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">N2</td>
+<td style="text-align: center;">Halpha+[NII]6584</td>
+<td style="text-align: center;">0.00-7.05</td>
+<td style="text-align: center;">0.48-1.87</td>
+<td style="text-align: center;">1.53-3.81</td>
+<td style="text-align: center;">3.37-7.00</td>
+<td>Close line pair; AGN/shock/N/O caveat.</td>
+</tr>
+<tr>
+<td style="text-align: center;">O3N2</td>
+<td style="text-align: center;">Hbeta+[OIII]5007+Halpha+[NII]6584</td>
+<td style="text-align: center;">0.23-7.05</td>
+<td style="text-align: center;">1.00-1.87</td>
+<td style="text-align: center;">2.41-3.81</td>
+<td style="text-align: center;">4.90-7.00</td>
+<td>Best standard strong-line gradient set for clean HII regions.</td>
+</tr>
+<tr>
+<td style="text-align: center;">R23</td>
+<td style="text-align: center;">[OII]3727+Hbeta+[OIII]5007</td>
+<td style="text-align: center;">0.61-9.59</td>
+<td style="text-align: center;">1.60-2.77</td>
+<td style="text-align: center;">3.45-5.33</td>
+<td style="text-align: center;">6.70-9.53</td>
+<td>Double-valued; use O32/R3/O2 priors.</td>
+</tr>
+<tr>
+<td style="text-align: center;">O32</td>
+<td style="text-align: center;">[OIII]5007+[OII]3727</td>
+<td style="text-align: center;">0.61-9.59</td>
+<td style="text-align: center;">1.60-2.77</td>
+<td style="text-align: center;">3.45-5.33</td>
+<td style="text-align: center;">6.70-9.53</td>
+<td>Ionization/hardness map, not O/H alone.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Ne3O2</td>
+<td style="text-align: center;">[NeIII]3869+[OII]3727</td>
+<td style="text-align: center;">0.61-12.70</td>
+<td style="text-align: center;">1.60-3.88</td>
+<td style="text-align: center;">3.45-7.19</td>
+<td style="text-align: center;">6.70-12.62</td>
+<td>Excitation/hardness diagnostic with auxiliary metallicity
+information; use with O32, R23 or photoionization modeling.</td>
+</tr>
+<tr>
+<td style="text-align: center;">R3</td>
+<td style="text-align: center;">[OIII]5007+Hbeta</td>
+<td style="text-align: center;">0.23-9.59</td>
+<td style="text-align: center;">1.00-2.77</td>
+<td style="text-align: center;">2.41-5.33</td>
+<td style="text-align: center;">4.90-9.53</td>
+<td>High-S/N excitation/oxygen ratio; auxiliary metallicity
+information.</td>
+</tr>
+<tr>
+<td style="text-align: center;">O2</td>
+<td style="text-align: center;">[OII]3727+Hbeta</td>
+<td style="text-align: center;">0.61-9.90</td>
+<td style="text-align: center;">1.60-2.89</td>
+<td style="text-align: center;">3.45-5.52</td>
+<td style="text-align: center;">6.70-9.84</td>
+<td>Low-ionization oxygen ratio; needs dust correction.</td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: center;">Halpha+[SII]6717/31</td>
+<td style="text-align: center;">0.00-6.89</td>
+<td style="text-align: center;">0.48-1.81</td>
+<td style="text-align: center;">1.53-3.72</td>
+<td style="text-align: center;">3.37-6.84</td>
+<td>Density/shock/DIG screen; weak at high z.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Te/direct</td>
+<td
+style="text-align: center;">[OIII]4363+Hbeta+[OIII]5007+[OII]3727</td>
+<td style="text-align: center;">0.61-9.59</td>
+<td style="text-align: center;">1.60-2.77</td>
+<td style="text-align: center;">3.45-5.33</td>
+<td style="text-align: center;">6.70-9.53</td>
+<td>Direct-method anchor; [OIII]4363 S/N is limiting.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="a-类-published-metallicity-gradient-line-map"
+class="level1">
+<h1>3. A 类: published metallicity gradient/ line map</h1>
+<section
+id="program-3045-witnessing-the-maturing-of-teenage-galaxies-at-z-4-6-with-a-comprehensive-uv-optical-sub-mm-benchmark-sample-for-the-community"
+class="level2">
+<h2>(1) Program 3045: Witnessing the Maturing of Teenage Galaxies at z =
+4-6 with a Comprehensive UV-Optical-Sub-mm Benchmark Sample for the
+Community</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): DC-494763; DC-519281; DC-536534;
+DC-630594; DC-683613; DC-709575; DC-742174; DC-842313; DC-848185;
+DC-873321; DC-873756; VC-5100541407; VC-5100822662; VC-5100994794;
+VC-5101218326; VC-5101244930; DC-417567; VC-5110377875.</li>
+<li>Physical type: <strong>main-sequence star-forming galaxy
+sample</strong>.</li>
+<li>Redshift: 4.4 &lt; z &lt; 5.7.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235M/F170LP;
+G395M/F290LP.</li>
+<li>Science Time: ~56.93h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>:</p>
+<p><strong><a href="https://arxiv.org/pdf/2603.13493">The
+ALPINE-CRISTAL-JWST Survey: Gas-phase abundance gradients of main
+sequence star-forming galaxies and their kinematics at
+4&lt;z&lt;6</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU G235M/G395M (PID
+3045,4265,1217,5974), ALMA [CII] 158 <span
+class="math inline">\(\mu\)</span>m, NIRCam；IFU
+reduction，谱线拟合，分别利用Bayesian方法和线诊断方法得到金属梯度；使用的indicators:
+N2、R3、Ne3O2、O32、O2、S2</li>
+<li>Result: <strong>得到了20个galaxy的gas-phase abundance
+gradients</strong>。整体梯度接近平坦且 median 略为正，median gradient 为
+<span class="math inline">\(+0.039\pm0.010\ {\rm dex\
+kpc^{-1}}\)</span>；只有 3 个星系在 <span
+class="math inline">\(1\sigma\)</span> 水平有 <span
+class="math inline">\(&gt;0.05\ {\rm dex\ kpc^{-1}}\)</span>
+的正梯度，没有显著负梯度。不同 metallicity indicator
+得到的梯度没有明显系统偏差。</li>
+<li>Properties: 给出 20 个 galaxies 的 physical properties，范围约为
+<span
+class="math inline">\(\log(M_*/M_\odot)\sim9.19-10.90\)</span>、<span
+class="math inline">\(\log({\rm
+SFR})\sim1.07-2.75\)</span>。下面两个table分别是性质信息和得到的金属梯度：
+<img src="assets/figures/01-3045-1-1.png" alt="alt text" /></li>
+</ul>
+<figure>
+<img src="assets/figures/01-3045-1-2.png" alt="alt text" />
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<p><strong><a
+href="https://arxiv.org/pdf/2509.02027">ALPINE-CRISTAL-JWST survey:
+revealing less massive black holes in high-redshift
+galaxies</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(3045)、NIRCam imaging、ALMA <span
+class="math inline">\([\mathrm{C\,II}]\,158\,\mu\mathrm{m}\)</span>；在
+NIRCam photometric peak aperture 提取 IFU spectrum，拟合 H<span
+class="math inline">\(\alpha\)</span> narrow/broad components，用 broad
+H<span class="math inline">\(\alpha\)</span> 判断 type-I AGN
+candidates，估计 <span class="math inline">\(M_{\rm BH}\)</span> 和
+<span class="math inline">\(\lambda_{\rm Edd}\)</span>。</li>
+<li>Result: 这篇指出 ALPINE-CRISTAL 样本中有 7 个 type-I AGN
+candidates，因此后续做 IFU metallicity gradient 时需要显式处理 broad
+H<span class="math inline">\(\alpha\)</span> 和 AGN
+contamination。文章的核心结论是这些 candidates 的 <span
+class="math inline">\(M_{\rm BH}\)</span> 较低，整体不像许多高红移
+over-massive BH，而更接近或低于本地 <span class="math inline">\(M_{\rm
+BH}-M_*\)</span> 关系。</li>
+<li>Properties: 7 个 type-I AGN candidates；<span
+class="math inline">\(M_{\rm BH}\sim10^6-10^{7.5}\
+M_\odot\)</span>，host <span class="math inline">\(M_*\)</span> 约 <span
+class="math inline">\(10^{9.5}-10^{10.5}\ M_\odot\)</span>。AGN
+candidates的性质： <img src="assets/figures/01-3045-2-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-5974-orchids-origin-of-the-c-ii-halos-in-distant-systems"
+class="level2">
+<h2>Program 5974: ORCHIDS: ORigin of the [C II] Halos In Distant
+Systems</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): Cristal-05; Cristal-07c; Cristal-09;
+Cristal-10; Cristal-21.</li>
+<li>Physical type: <strong>LBG</strong>.</li>
+<li>Redshift: <span class="math inline">\(5.1 &lt; z &lt;
+5.7\)</span>.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP;
+G395M/F290LP.</li>
+<li>Science Time: ~43.18h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2603.13493">The
+ALPINE-CRISTAL-JWST Survey: JWST/IFU Optical Observations for 18
+Main-Sequence Galaxies at z = 4 - 6</a>.</strong> 和PID 3045的一样</p>
+</section>
+<section
+id="program-1893-galaxy-assembly-at-z-6-unraveling-the-origin-of-the-spatial-offset-between-the-uv-and-fir-emission"
+class="level2">
+<h2>(2) Program 1893: Galaxy Assembly at z &gt; 6: Unraveling the Origin
+of the Spatial Offset between the UV and FIR Emission</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): BDF3299; COSMOS24108; A2744-YD4.</li>
+<li>Physical type:
+<strong>star-forming、多成分的高红移星系系统，其中至少部分位于原星系团中.</strong><br />
+</li>
+<li>Redshift: 7.114; 6.361; 7.879.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: PRISM/CLEAR.</li>
+<li>Science Time: ~21.3h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2403.03977">Gas-phase
+metallicity gradients in galaxies at z~6-8</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU, NIRCam/ALMA ancillary
+data；拟合发射线，radial/bin-based metallicity-gradient
+fitting；indicator：R2、O3、Ne3O2、S2、R23</li>
+<li>Result: <strong>得到了二维emission line map和radial metallicity
+gradient。</strong> 主要结论是这些早期系统的 gradients
+整体接近平坦，说明 merger、outflow 或 supernova-driven mixing
+可能已经显著抹平早期化学结构。</li>
+<li>Properties: 样本的子结构覆盖 <span
+class="math inline">\(\log(M_*/M_\odot)\sim7.6-9.3\)</span>、SFR <span
+class="math inline">\(\sim1-15\ M_\odot\ {\rm yr^{-1}}\)</span>、<span
+class="math inline">\(12+\log({\rm O/H})\sim7.7-8.3\)</span>.
+样本子结构的性质如下： <img src="assets/figures/02-1893-1-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-1840-alma-oiii88um-emitters.-signpost-of-early-stellar-buildup-and-reionization-in-the-universe"
+class="level2">
+<h2>(3) Program 1840: ALMA [OIII]88um Emitters. Signpost of Early
+Stellar Buildup and Reionization in the Universe</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J0235-0532; J0217-0208; SDF-LBG-ID34;
+RXC-J2248-ID3; COS-2987030247; SXDF-NB1006-2; BDF-3299; A2744-YD4;
+A1689-ZD1; J1211-0118; COS-3018555981; B14-65666.</li>
+<li>Physical type: <strong>[OIII]88um-selected active early galaxy
+sample</strong>.</li>
+<li>Redshift: 6 &lt; z &lt; 7.9</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRCam
+imaging(F115W/F150W/F200W+redshift-dependent LW filters).
+Grating/filter: G395H/F290LP or G395M/F290LP.</li>
+<li>Science Time: ~33.9h</li>
+<li>Available indicators: target-dependent. For the lower-redshift
+targets, N2; O3N2; S2. For targets at <span
+class="math inline">\(z\gtrsim6.7\)</span>, R23; R3; O2; Ne3O2; O32.
+Exact usable sets should be selected target by target.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+有一些研究金属丰度的论文，但没有专门计算金属梯度</p>
+<p><strong><a href="https://arxiv.org/pdf/2510.25721">RIOJA. Young
+starburst and ionized gas outflows in a z=7.212 galaxy uncovered by JWST
+NIRCam and NIRSpec observations</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU， NIRCam
+imaging，ALMA，MIRI；line-map extraction，kinematic/outflow
+decomposition。</li>
+<li>Result: <strong>得到emission line map。</strong>
+发现[OIII]5008有宽线成分，解释为 ionized-gas outflow system；indicator:
+O2、R3、R23</li>
+<li>Properties: <span
+class="math inline">\(\log(M_*/M_\odot)=8.54^{+0.79}_{-0.22}\)</span>；<span
+class="math inline">\(\log[{\rm SFR}/(M_\odot\,{\rm
+yr^{-1}})]=2.54^{+0.17}_{-0.71}\)</span>；<span
+class="math inline">\(12+\log({\rm O/H})_{\rm
+R23}=8.07\pm0.12\)</span>。</li>
+</ul>
+</section>
+<section
+id="program-1567-early-galaxy-assembly-uncovered-with-alma-and-jwst-a-remarkably-uv-and-cii-bright-strongly-lensed-sub-l-galaxy-at-z6.072"
+class="level2">
+<h2>(4) Program 1567: Early Galaxy Assembly Uncovered with ALMA and
+JWST: A Remarkably UV and [CII] Bright, Strongly Lensed Sub-L* Galaxy at
+z=6.072</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): Group-Z6.3; Z6.1-6.2.</li>
+<li>Physical type: <strong>strongly lensed star-forming galaxy with
+dense clumps</strong>.</li>
+<li>Redshift: 6.072.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRCam
+imaging(F115W、F150W、F277W、F356W、F444W). Grating/filter:
+G395H/F290LP.</li>
+<li>Science Time: ~12.3h</li>
+<li>Available indicators: N2; O3N2; R3; S2; Te/direct.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2402.18543">Primordial
+rotating disk composed of at least 15 dense star-forming clumps at
+cosmic dawn</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec， NIRCam， ALMA， HST；IFU
+reduction，拟合发射线，得到line
+map，sed拟合，动力学分析，分析每个clump的性质。indicator: Te
+direct、R3、N2、O3N2、S2、O3S2。</li>
+<li>Result: <strong>得到了emission line
+map</strong>。利用JWST图像把一个在HST
+image中看起来较平滑的小星系，分解成了至少 15
+个非常致密的恒星形成团块，底层结构是一个有序旋转的气体盘</li>
+<li>Properties: 整体的性质 <img src="assets/figures/04-1567-1-1.png"
+alt="alt text" />​</li>
+</ul>
+</section>
+<section
+id="program-1554-nebular-line-diagnostics-in-a-merger-at-cosmic-dawn"
+class="level2">
+<h2>(5) Program 1554: Nebular Line Diagnostics in a Merger at Cosmic
+Dawn</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): Group-PJ308-21.</li>
+<li>Physical type: <strong>quasar host and two merging
+companions</strong>.</li>
+<li>Redshift: 6.234.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP.</li>
+<li>Science Time: ~7.8h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2406.06697">A quasar-galaxy
+merger at z~6.2: rapid host growth via accretion of two massive
+satellite galaxies</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU， ALMA，
+HST；扣除了中心QSO的psf，做了line
+map和ne等性质的map，但没有量化梯度；indicator：Te
+direct、N2、R3、S2</li>
+<li>Result: <strong>得到了emission line map</strong>。把 PJ308-21 解释为
+quasar host 正在吸积两个 massive satellites 的 merger
+system。三个星系的ISM差异较大，quasar host
+已经很大质量，但由于merger还会快速增长</li>
+<li>Properties: QSO host的 <span
+class="math inline">\(\log(M_*/M_\odot)\approx 11\)</span>，<span
+class="math inline">\(Z_{\rm host}\approx 1.1\,Z_\odot.\)</span></li>
+</ul>
+</section>
+<section
+id="program-1657-anchoring-z6-galaxy-metallicities-using-te-and-ne-diagnostics-enabled-by-jwst-and-alma-spectroscopy"
+class="level2">
+<h2>(6) Program 1657: Anchoring z&gt;6 Galaxy Metallicities Using Te and
+ne Diagnostics Enabled by JWST and ALMA Spectroscopy</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J0218-0519; J0217-0208; J1211-0118.</li>
+<li>Physical type: <strong>z&gt;6 star-forming galaxies, with ALMA [O
+III] <span class="math inline">\(88\,\mu{\rm m}\)</span>
+detection</strong>.</li>
+<li>Redshift: 7.215, 6.204, 6.029.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI/MRS + NIRCam imaging(F150W +
+F300M；F200W + F410M; F150W + F360M；F200W + F430M). Grating/filter:
+G235H/F170LP; G395H/F290LP; G395M/F290LP; MIRI MRS Channel 1
+SHORT(A).</li>
+<li>Science Time: ~23.7h</li>
+<li>Available indicators: target-dependent. Oxygen-line diagnostics:
+R23; R3; O2; Ne3O2; O32; Te/direct. N2; O3N2; S2 are available only for
+targets with <span class="math inline">\(z\lesssim7.0\)</span>.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2505.09186">JWST &amp; ALMA
+Joint Analysis with [OII]3726,3729, [OIII]4363, [OIII]88um, and
+[OIII]52um: Multi-Zone Evolution of Electron Densities at z ~ 0 - 14 and
+Its Impact on Metallicity Measurements</a>.</strong></p>
+<ul>
+<li>Data/processing: NIRSpec/IFU + NIRCam imaging + ALMA <span
+class="math inline">\([\mathrm{O\,III}]\,88\,\mu{\rm
+m},[\mathrm{O\,III}]\,52\,\mu{\rm m}\)</span>; 发射线拟合,电子密度计算;
+indicator: Te direct、R23</li>
+<li>Result: <strong>得到了line
+map</strong>。光学线测得的电子密度随红移上升，但是FIR
+线测得的电子密度却没有明显演化，说明它们主要追踪不同的气体成分。
+传统的Te方法得到的金属丰度可能被低估，更偏向trace较热、较高密度的气体，不能代表整个星系。</li>
+<li>Properties: metallicity分别为: <span class="math inline">\(Z_{\rm
+gas}\approx 0.32\,Z_\odot, 0.20\,Z_\odot,0.66\,Z_\odot.\)</span> <img
+src="assets/figures/07-1657-1-1.png" alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-1827-nirspec-integral-field-spectroscopy-of-lyc-leaking-galaxies"
+class="level2">
+<h2>(7) Program 1827: NIRSpec Integral Field Spectroscopy of LyC-Leaking
+Galaxies</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): LACES94460; LACES104037.</li>
+<li>Physical type: <strong>LyC-leaking galaxy candidates</strong>.</li>
+<li>Redshift: 3.1</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235M/F170LP.</li>
+<li>Science Time: ~24.1h</li>
+<li>Available indicators: N2; O3N2; R3; S2. The O32 value discussed in
+the related paper should be checked against the observing configuration
+or ancillary data before being attributed to this IFU setup.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2603.05907">Confirmation and
+Refutation of Lyman Continuum Leakers at z~3 with JWST
+NIRSpec/IFU</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU (1827) + HST imaging;
+确认LyC信号区域，拟合发射线，星族建模; indicator: Te
+direct、S2、O32</li>
+<li>Result: <strong>得到了line map</strong>。确认了LyC
+leaker区域为LACES-10403，该区域由一个年龄仅约 <span
+class="math inline">\(5 \text{ Myr}\)</span> 的极年轻星族驱动，merger
+可能为 LyC photon escape 提供通道</li>
+<li>Properties: <img src="assets/figures/08-1827-1-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-2913-dissecting-the-monsters-resolved-ifu-spectroscopy-of-the-most-massive-quiescent-galaxies-at-z3"
+class="level2">
+<h2>(8) Program 2913: Dissecting the Monsters: Resolved IFU Spectroscopy
+of the Most Massive Quiescent Galaxies at z&gt;3</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): XMM-VID3-1120; XMM-VID3-2457;
+XMM-VID1-2075.</li>
+<li>Physical type: <strong>massive quiescent galaxy
+sample</strong>.</li>
+<li>Redshift: 3.4863, 3.4868, 3.4465.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235M/F170LP.</li>
+<li>Science Time: ~19.4h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2605.27555">MAGAZ3NE:
+Spatially Resolved Ages and Chemical Abundances of Ultra-Massive
+Quiescent Galaxies at z ~ 3.5 using JWST/NIRSpec IFU</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(2913)，Keck spectrum， ALMA dust
+continuum; 由于是QG，主要拟合不同半径处的吸收谱; indicator: <span
+class="math inline">\([\alpha/\mathrm{Fe}]\)</span></li>
+<li>Result: <strong>得到了[Fe/H]
+Map和金属梯度</strong>。三个星系中心都经历过强烈
+starburst，中心区域均较年轻，并且 <span
+class="math inline">\(\alpha\)</span>-enhanced</li>
+<li>Properties: <span
+class="math inline">\(\log(M_\star/M_\odot)&gt;11.2\)</span>,</li>
+</ul>
+</section>
+<section
+id="program-5293-galactic-winds-in-the-early-universe-observing-outflows-in-emission-and-absorption-in-a-typical-z6-galaxy"
+class="level2">
+<h2>(9) Program 5293: Galactic Winds in the Early Universe: observing
+outflows in emission and absorption in a typical z~6 galaxy</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): MACS0308-ZD1.</li>
+<li>Physical type: <strong>strongly lensed clumpy z=6.2 star-forming
+galaxy( Cosmic Spear)</strong>.</li>
+<li>Redshift: 6.208</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRCam imaging(F115W, F150W, F200W, F250M,
+F300M, F410M). Grating/filter: G395H/F290LP; G235H/F170LP;
+G140H/F100LP.</li>
+<li>Science Time: ~10.64h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2512.08054">Spatially Resolved
+Physical Properties of Young Star Clusters and Star-forming Clumps in
+the Brightest z&gt;6 Galaxy， the Strongly Lensed Cosmic Spear at
+z=6.2</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(5293)， NIRCam imaging， ALMA，
+HST；发射线提取，sed拟合；</li>
+<li>Result: <strong>得到了line
+map</strong>。这篇的主要贡献是给强透镜系统的放大率、source-plane
+morphology 或 clump decomposition。IFU数据具体处理和金属丰度分析in
+prep</li>
+<li>Properties: <img src="assets/figures/11-5293-1-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-1970-zooming-into-the-monsters-mouth-tracing-feedback-from-their-hosts-to-circumgalactic-medium-in-z3.5-radio-loud-agn"
+class="level2">
+<h2>(10) Program 1970: Zooming into the Monster’s Mouth: Tracing
+Feedback from Their Hosts to Circumgalactic Medium in z=3.5 Radio-loud
+AGN</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): TNJ0205+2242; TNJ0121+1320; 4C03.24;
+4C19.71.</li>
+<li>Physical type: <strong>z~3.5 radio-loud AGN with jet</strong>.</li>
+<li>Redshift: 3.50 &lt; z &lt; 3.59.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235H/F170LP.</li>
+<li>Science Time: ~24.5h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前论文主要做的动力学，没有做metallicity</p>
+<p><strong><a href="https://arxiv.org/pdf/2401.02479">JWST discovers an
+AGN ionization cone but only weak radiatively driven feedback in a
+powerful z~3.5 radio-loud AGN</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec， ALMA;
+主要处理IFU数据，找companion并做了动力学建模</li>
+<li>Result: 有[O III]5007 channel
+maps，追踪暖电离气体，最后通过动力学建模得到速度弥散。四个 radio AGN
+周围都发现了 companions，可能主要对应 minor mergers，触发 radio
+AGN，并影响 jet</li>
+<li>Properties: <span
+class="math inline">\(\log(M_\star/M_\odot)\)</span>在10.82-11.27</li>
+</ul>
+</section>
+<section
+id="program-2654-kpc-scale-dual-supermassive-black-holes-and-their-impact-on-galaxy-formation-at-cosmic-noon"
+class="level2">
+<h2>(11) Program 2654: Kpc-scale Dual Supermassive Black Holes and Their
+Impact on Galaxy Formation at Cosmic Noon</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): SDSS J0841+4825; SDSS J0749+2255.</li>
+<li>Physical type: <strong>kpc-scale dual quasar system</strong>.</li>
+<li>Redshift: 2.95, 2.17.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI/MRS. Grating/filter: G140M/F100LP;
+G235M/F170LP; MIRI MRS SHORT; MIRI MRS LONG.</li>
+<li>Science Time: ~16.4h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2403.08098">VODKA-JWST:
+Synchronized growth of two SMBHs in a massive gas disk? A 3.8 kpc
+separation dual quasar at cosmic noon with NIRSpec IFU</a>.</strong></p>
+<ul>
+<li>Data/processing: NIRSpec IFU(2654)；主要对SDSS
+J0749+2255双quasar处理，双psf subtraction，做二维发射线map</li>
+<li>Result: 得到了Hα、[SII]、[NII] flux map。首次直接探测到双 quasar
+周围的延展电离气体</li>
+<li>Properties: <span class="math inline">\(M_\star\sim10^{11}\
+M_\odot\)</span></li>
+</ul>
+</section>
+<section
+id="program-2959-resolving-early-galaxy-disks-at-z8-with-nirspec-ifs"
+class="level2">
+<h2>(12) Program 2959: Resolving early galaxy disks at z~8 with
+NIRSpec-IFS</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): 04590; 06355; 10612.</li>
+<li>Physical type: <strong>weak lensed early galaxy disk
+candidates</strong>.</li>
+<li>Redshift: 7.66.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP.</li>
+<li>Science Time: not reported.</li>
+<li>Available indicators: R23; R3; O2; Ne3O2; O32; Te/direct.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2507.14936">Exploring
+Spatially-Resolved Metallicities, Dynamics and Outflows in Low-Mass
+Galaxies at z ~ 7.6</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(2959)， NIRCam imaging;
+发射线拟合，计算金属丰度，动力学分析; indicator：O2、R3、Ne3O2、Te
+direct</li>
+<li>Result: <strong>得到了line
+map和金属梯度</strong>。使用strong-line得到的金属梯度~0，使用Te
+direct得到的金属梯度<span class="math inline">\(\nabla_Z=-0.11\pm0.03\
+{\rm dex\,kpc^{-1}}\)</span>，负梯度。作者认为可能原因包括: AGN
+ionization 污染了 strong-line ratios、strong-line calibration 不适用于
+<span class="math inline">\(z\sim7.6\)</span>、direct-<span
+class="math inline">\(T_{\rm e}\)</span> 方法中的 constant-density
+assumption 过于简单。</li>
+<li>Properties: 对于06355和10612分别为：<span
+class="math inline">\(\log(M_\star/M_\odot)=8.72\pm0.04,8.08\pm0.04\)</span>，<span
+class="math inline">\(SFR\sim54,15\,M_\odot\,{\rm yr}^{-1}\)</span></li>
+</ul>
+</section>
+<section
+id="program-2566-characterizing-stellar-mass-assembly-and-physical-properties-in-the-brightest-galaxy-in-the-redshift5-universe"
+class="level2">
+<h2>(13) Program 2566: Characterizing Stellar Mass Assembly and Physical
+Properties in the Brightest Galaxy in the Redshift&gt;5 Universe</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J1241+2219.</li>
+<li>Physical type: <strong>highly magnified z=5 lensed
+galaxy</strong>.</li>
+<li>Redshift: 5.045.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRCam imaging(F115W, F150W, F200W, F250M,
+F335M, F460M). Grating/filter: G395M/F290LP; G235M/F170LP.</li>
+<li>Science Time: ~19.4h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2512.02000">JWST &amp; the Waz
+Arc I: Spatially Resolving the Physical Conditions within a
+Post-Starburst Galaxy at Redshift 5 with NIRSpec IFS</a>.</strong></p>
+<ul>
+<li>Data/processing: NIRSpec/IFU(2566) + NIRCam imaging;
+发射线提取，电离参数等性质分析; indicator：N2、O2、R23</li>
+<li>Result: <strong>得到了 line map。</strong> 它虽然在 UV
+波段非常亮，但当前发射线整体较弱，Balmer absorption
+很强，说明它曾经经历强烈的恒星形成，之后快速衰退；局部低金属丰度可能来自新鲜气体流入。</li>
+<li>Properties: <span class="math inline">\(Z_{\rm
+gas}\approx0.5\,Z_\odot\)</span>，<span
+class="math inline">\(\log(M_*/M_\odot)=9.7\pm0.3\)</span> <img
+src="assets/figures/09-2566-1-1.png" alt="alt text" /></li>
+</ul>
+</section>
+</section>
+<section
+id="b-类-non-lensed-galaxy-candidates-without-published-metallicity-gradients"
+class="level1">
+<h1>4. B 类: Non-lensed galaxy candidates without published metallicity
+gradients</h1>
+<section
+id="program-1626-achieving-a-revolutionary-panchromatic-view-of-early-galaxy-growth-through-nirspecifu-observations-of-12-massive-z6.5-galaxies-with-alma-derived-cii-redshifts"
+class="level2">
+<h2>(14) Program 1626: Achieving a Revolutionary Panchromatic View of
+Early Galaxy Growth through NIRSpec/IFU Observations of 12 Massive
+z&gt;6.5 Galaxies with ALMA-derived [CII] Redshifts</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): REBELS-05; REBELS-08; REBELS-12;
+REBELS-14; REBELS-15; REBELS-25; REBELS-29; REBELS-32; REBELS-34;
+REBELS-38; REBELS-39.</li>
+<li>Physical type: <strong>UV 明亮、高质量恒星形成星系，都已经被 ALMA
+探测到 [C II] <span class="math inline">\(158\,\mu{\rm m}\)</span>
+发射线</strong>.</li>
+<li>Redshift: 6.5 &lt; z &lt; 7.7.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: PRISM/CLEAR.</li>
+<li>Science Time: ~14.1h</li>
+<li>Available indicators: target-dependent. R23; R3; O2; Ne3O2; O32 are
+available across the sample. H<span
+class="math inline">\(\alpha\)</span>-based diagnostics such as N2 are
+available only for the lower-redshift subset and should be selected
+target by target.</li>
+</ul>
+<p><strong>Published results and properties.</strong></p>
+<p><strong><a href="https://arxiv.org/pdf/2501.10559">REBELS-IFU:
+evidence for metal-rich massive galaxies at z~6-8</a>.</strong></p>
+<ul>
+<li><p>Data/processing: JWST/NIRSpec
+IFU(1626)，ALMA；提取光谱，金属丰度计算，scaling
+relation拟合(MZR和FMR)；indicators: R23、R3、N2、O32、O2、Ne3O2</p></li>
+<li><p>Result: <strong>只得到了整体的金属丰度，没有line
+map</strong>。显示这些高红移massive galaxies 已经有接近成熟的 metal
+enrichment</p></li>
+<li><p>Properties: <img src="assets/figures/05-1626-1-1.png"
+alt="alt text" /></p></li>
+</ul>
+</section>
+<section
+id="program-5572-red-monsters-kinematics-of-two-universe-breaking-ultra-massive-galaxies-in-the-first-gyr"
+class="level2">
+<h2>(15) Program 5572: Red Monsters: Kinematics of Two ‘Universe
+Breaking’, Ultra-Massive Galaxies in the First Gyr</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): S1; S2.</li>
+<li>Physical type: <strong>ultra-massive early red galaxy
+sample</strong>.</li>
+<li>Redshift: 5.58, 5.18</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP.</li>
+<li>Science Time: ~16.8h</li>
+<li>Available indicators: R23; R3; O2; Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+下面的论文用到了这组观测，但没有关注金属丰度</p>
+<p><strong><a href="https://arxiv.org/pdf/2602.03030">From Grism to IFU:
+Revising the Redshift and Nature of the Massive Dusty Galaxy S1 with
+JWST and ALMA</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(5572)，ALMA;
+只做了谱线识别和sed，没有做动力学和金属丰度</li>
+<li>Result: S1之前在FRESCO
+grism中认为红移是5.58，得到IFU数据后发现其实是3.244。</li>
+<li>Properties: 更新后的S1，<span
+class="math inline">\(M=3.6\times10^{10}\,M_\odot\)</span>, <span
+class="math inline">\(SFR=72\,M_\odot\,{\rm yr^{-1}}\)</span></li>
+<li>Assessment for metallicity gradients: S1 修正为 <span
+class="math inline">\(z=3.244\)</span> 后，G395 setup
+错过本报告关注的主要 rest-optical lines，不作为 metallicity-gradient
+推荐对象。</li>
+</ul>
+</section>
+<section
+id="program-5761-ionized-gas-kinematics-of-a-z-4-main-sequence-disk-galaxy"
+class="level2">
+<h2>(16) Program 5761: Ionized Gas Kinematics of a z &gt; 4 Main
+Sequence Disk Galaxy</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): ALMA-J081740.86+135138.2.</li>
+<li>Physical type: <strong>massive rotating DLA host disk</strong>.</li>
+<li>Redshift: 4.26.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP;
+G395M/F290LP.</li>
+<li>Science Time: ~4.98h</li>
+<li>Available indicators: N2; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+还没有用这组观测的论文，下面这篇是用另一组IFU配置得到的结果，文中说这组观测的数据in
+prep</p>
+<p><strong><a href="https://arxiv.org/pdf/2512.05213v1">GA-NIFS: A
+smouldering disk galaxy undergoing ordered rotation at z =
+4.26</a>.</strong></p>
+<ul>
+<li>Data/processing: NIRSpec/IFU(4258)，ALMA; line
+fitting，metallicity，动力学建模; indicator：N2、S2</li>
+<li>Properties: <span class="math inline">\(Z_{\rm
+gas}\sim0.7\,Z_\odot,\ \log(M_\star/M_\odot)=10.6\pm0.2\)</span></li>
+</ul>
+</section>
+<section
+id="program-6221-h-alpha-mapping-of-a-giant-prototypical-lyman-alpha-blob-at-z3"
+class="level2">
+<h2>(17) Program 6221: H-alpha mapping of a giant, prototypical
+Lyman-alpha blob at z=3</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): LAB1IFU1.</li>
+<li>Physical type: <strong>giant Lyman-alpha blob</strong>.</li>
+<li>Redshift: 3.1.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235M/F170LP.</li>
+<li>Science Time: ~24.85h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+还没有用到观测的论文</p>
+<ul>
+<li>Properties: 总分子气体质量<span
+class="math inline">\((8.7\pm2.0)\times10^{10}\,M_\odot\)</span>,
+7个确认的星系</li>
+</ul>
+</section>
+</section>
+<section id="c-类-lensed-galaxy" class="level1">
+<h1>5. C 类: Lensed galaxy</h1>
+<section
+id="program-1864-the-formation-of-a-primeval-hyperstarburst-galaxy-at-z6"
+class="level2">
+<h2>(18) Program 1864: The Formation of a Primeval Hyperstarburst Galaxy
+at z~6</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): SPT0346-52.</li>
+<li>Physical type: <strong>strongly lensed dusty star-forming
+galaxy</strong>.</li>
+<li>Redshift: 5.6559.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI/MRS + MIRI
+imaging(F770W、F1280W、F1500W、F1800W、F2100W) + NIRCam
+imaging(F200W、F356W、F444W). Grating/filter: NIRSpec G395H/F290LP; MIRI
+MRS SHORT(A), MEDIUM(B).</li>
+<li>Science Time: ~18.9h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用该观测数据的论文</p>
+<ul>
+<li>Properties: <span class="math inline">\(SFR\sim3000\text{--}4500\
+M_\odot\,{\rm yr^{-1}},L_{\rm
+IR}\sim3.6\times10^{13}L_\odot\)</span></li>
+</ul>
+</section>
+<section
+id="program-3433-mapping-star-formation-and-feedback-in-clumpy-galaxies-at-redshift-5"
+class="level2">
+<h2>(19) Program 3433: Mapping star formation and feedback in clumpy
+galaxies at redshift ~5</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): MS1358-ARC; MACS0940-ARC;
+RCS0224-ARC.</li>
+<li>Physical type: <strong>clumpy strongly lensed star-forming
+galaxy</strong>.</li>
+<li>Redshift:4.92, 4.03, 4.88</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRCam imaging. Grating/filter:
+G395H/F290LP; G235M/F170LP.</li>
+<li>Science Time: ~38.2h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有用这组观测的论文</p>
+<ul>
+<li>Properties: <span class="math inline">\(M\sim10^6{-}10^9\
+M_\odot\)</span>, UV-derived SFR: <span class="math inline">\(0.1{-}1\
+M_\odot\,{\rm yr}^{-1}\)</span></li>
+</ul>
+</section>
+<section
+id="program-5119-resolving-galaxy-building-blocks-at-high-z-the-comprehensive-picture-of-internal-physical-properties-in-an-ultra-low-mass-major-merger-system-at-z5.2"
+class="level2">
+<h2>(20) Program 5119: Resolving galaxy building blocks at high-z: the
+comprehensive picture of internal physical properties in an
+ultra-low-mass major merger system at z=5.2</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): ELG1+ELG2.</li>
+<li>Physical type: <strong>ultra-low-mass lensed major merger
+system</strong>.</li>
+<li>Redshift: 5.1.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235M/F170LP.</li>
+<li>Science Time: ~24.0h</li>
+<li>Available indicators: R23; R3; O2; Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+没有用这组观测的论文，但是有一个前置论文</p>
+<p><strong><a href="https://arxiv.org/pdf/2212.07540">JWST catches the
+assembly of a z~5 ultra-low-mass galaxy</a>.</strong></p>
+<ul>
+<li>Data/processing: NIRCam， HST</li>
+<li>Result: 作者认为 ELG1 和 ELG2
+更可能是两个正在并合的星系，而不是一个星系内部的两个 clumps，因为
+两个组件之间存在 Hα-bright bridge且rest-frame optical continuum 中可能有
+tidal feature；</li>
+<li>Properties: <img src="assets/figures/10-5119-1-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section
+id="program-5883-the-most-distant-cosmos-web-strong-gravitational-lens-mass-content-in-the-foreground-lens-and-dissecting-the-background-source"
+class="level2">
+<h2>(21) Program 5883: The most distant Cosmos-Web strong gravitational
+lens: mass content in the foreground lens and dissecting the background
+source</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): CWeb-EinsteinRing.</li>
+<li>Physical type: <strong>strongly lensed background
+galaxy</strong>.</li>
+<li>Redshift: 5.1043.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235H/F170LP.</li>
+<li>Science Time: ~10.72h</li>
+<li>Available indicators: for the <span
+class="math inline">\(z=5.1043\)</span> background source, R23; R3; O2;
+Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+还没有用这组观测的论文</p>
+<ul>
+<li>Properties: background source stellar mass <span
+class="math inline">\(\sim1.8\times10^{10}\,M_\odot\)</span>; IR-based
+SFR <span class="math inline">\(\sim60\,M_\odot\,{\rm
+yr^{-1}}\)</span>.</li>
+</ul>
+</section>
+<section
+id="program-6405-clumpy-relics-the-first-spectroscopic-confirmation-of-globular-clusters-at-z3"
+class="level2">
+<h2>(22) Program 6405: Clumpy Relics: The First Spectroscopic
+Confirmation of Globular Clusters at z~3</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): UNCOVER35602-Clumps;
+UNCOVER35602-Host.</li>
+<li>Physical type: <strong>lensed massive QG with surrounding clumps,
+可能是cluster candidate</strong>.</li>
+<li>Redshift: 2.53.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: PRISM/CLEAR.</li>
+<li>Science Time: ~20.27h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+没有用到该观测论文</p>
+<ul>
+<li>Properties: Stellar mass约 <span
+class="math inline">\(10^6{-}10^7\,M_\odot\)</span></li>
+</ul>
+</section>
+</section>
+<section id="d-类-agn-quasar-radio-galaxy" class="level1">
+<h1>6. D 类: AGN / quasar / radio galaxy</h1>
+<section
+id="program-1712-jwst-beholds-the-multiple-merger-assembly-of-the-most-luminous-quasar"
+class="level2">
+<h2>(23) Program 1712: JWST Beholds the Multiple-merger Assembly of the
+Most Luminous Quasar</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): W2246-0526.</li>
+<li>Physical type: <strong>hyperluminous obscured quasar /
+merger</strong>.</li>
+<li>Redshift: 4.6.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI/MRS. Grating/filter: NIRSpec
+G235H/F170LP + G395H/F290LP; MIRI MRS SHORT(A), MEDIUM(B), LONG(C).</li>
+<li>Science Time: ~23.3h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前的论文只用了MIRI/MRS的, 且没有做金属丰度相关的</p>
+<p><strong><a href="https://arxiv.org/pdf/2605.09078">JWST observations
+and a model for the extremely luminous obscured quasar W2246-0526 at
+z=4.6</a>.</strong></p>
+<ul>
+<li>Data/processing: MIRI/MRS; 主要用MIRI的数据帮助做不同model的sed拟合,
+没有做金属丰度的处理</li>
+<li>Result: 最终通过sed拟合得到了各种性质。sed拟合中需要加上hot
+polar-dust component效果才好</li>
+<li>Properties: SFR <span class="math inline">\(=360-2900\ M_\odot\,{\rm
+yr^{-1}}\)</span>；<span class="math inline">\(M_{\rm
+BH}=(1.3-2.3)\times10^{10}\ M_\odot\)</span>，<span
+class="math inline">\(M_{\rm *}\sim5\times10^{11}\
+M_\odot\)</span>。</li>
+</ul>
+</section>
+<section
+id="program-2028-mapping-a-distant-protocluster-anchored-by-a-luminous-quasar-in-the-epoch-of-reionization"
+class="level2">
+<h2>(24) Program 2028: Mapping a Distant Protocluster Anchored by a
+Luminous Quasar in the Epoch of Reionization</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J0910Q; J0910m0414_all_objects_new.</li>
+<li>Physical type: <strong>Luminous broad-absorption-line
+quasar</strong>.</li>
+<li>Redshift: 6.63.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + NIRSpec/MOS. Grating/filter: NIRSpec IFU
+G395H/F290LP; PRISM/CLEAR for quasar-host continuum.</li>
+<li>Science Time: ~16.3h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+有使用MOS的论文，但没有使用IFU</p>
+<ul>
+<li>Properties: <span class="math inline">\(M_{\rm
+BH}=(3.59\pm0.61)\times10^9\,M_\odot\)</span>, 位于
+protocluster，富气体、尘埃; <span class="math inline">\({\rm
+FWHM}_{[\mathrm{C\,II}]\,158\,\mu{\rm m}}\approx930\ {\rm
+km\,s^{-1}}\)</span>.</li>
+</ul>
+</section>
+<section
+id="program-2249-monster-in-the-early-universe-unveiling-the-nature-of-a-dust-reddened-quasar-hosting-a-ten-billion-solar-mass-black-hole-at-z7.1"
+class="level2">
+<h2>(25) Program 2249: Monster in the Early Universe: Unveiling the
+Nature of a Dust Reddened Quasar Hosting a Ten-Billion Solar Mass Black
+Hole at z=7.1</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J0038-0653.</li>
+<li>Physical type: <strong>dust-reddened high-redshift
+quasar</strong>.</li>
+<li>Redshift information from proposal_text: proposal redshift: 7.1;
+7.06.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI imaging(F560W, F770W, F1000W, F1130W,
+F1280W, F1500W, F1800W, F2100W, F2550W). Grating/filter: G395H/F290LP;
+G395M/F290LP; PRISM/CLEAR.</li>
+<li>Science Time: ~5.5h</li>
+<li>Available indicators: R23; R3; O2; Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有用到这个观测数据的论文，in prep</p>
+<ul>
+<li>Properties: 估计的<span class="math inline">\(M_{\rm
+BH}\gtrsim10^{10}\,M_\odot.\)</span></li>
+</ul>
+</section>
+<section
+id="program-2457-extreme-quasar-feedback-at-the-peak-of-the-galaxy-formation-epoch"
+class="level2">
+<h2>(26) Program 2457: Extreme Quasar Feedback at the Peak of the Galaxy
+Formation Epoch</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): SDSS-J221524.00-005643.8;
+SDSS-J083200.20+161500.3; SDSS-J083448.48+015921.1;
+SDSS-J123241.73+091209.3; SDSS-J121704.70+023417.1.</li>
+<li>Physical type: <strong>extremely red quasar outflow
+sample</strong>.</li>
+<li>Redshift: 2.40 &lt; z &lt; 2.59.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G235H/F170LP.</li>
+<li>Science Time: ~20.9h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+没有关注金属丰度/梯度的，主要看 quasar host 的连续谱</p>
+<p><strong><a href="https://arxiv.org/pdf/2506.12124">JWST IFU
+observations uncover host galaxy continua in extremely red and obscured
+quasar</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(2457, 1335)；quasar PSF
+subtraction,拟合形态并提取、拟合host一维光谱</li>
+<li>Result: 得到host的一维光谱、形态参数、性质。看到了quasar
+host的连续谱，发现quasar 与 host 中心经常不重合</li>
+<li>Properties: <img src="assets/figures/12-2457-1-1.png"
+alt="alt text" /></li>
+</ul>
+</section>
+<section id="program-3079-bees-black-hole-extended-emission-search"
+class="level2">
+<h2>(27) Program 3079: BEES: Black hole Extended Emission Search</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J1335+3533; J158-14; J2100-1715;
+J2229+1457.</li>
+<li>Physical type: <strong>luminous quasar,with small proximity
+zone</strong>.</li>
+<li>Redshift: 5.90 &lt; z &lt; 6.15.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395M/F290LP.</li>
+<li>Science Time: ~19.64h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+没有专门测量金属丰度/梯度</p>
+<p><strong><a href="https://arxiv.org/pdf/2510.09753">BEES: Quasar
+lifetime measurements from extended rest-optical emission line nebulae
+at z ~ 6</a>.</strong></p>
+<ul>
+<li>Data/processing: JWST/NIRSpec IFU(3079, 1218)；psf
+subtraction，制作pseudo-narrowband image，估计lifetime</li>
+<li>Result: 得到了Hα、[OIII] pseudo-narrowband image。发现多数 quasars
+当前 UV-bright phase 很短</li>
+<li>Properties: <span class="math inline">\(M_{\rm
+BH}\sim10^9\,M_\odot\)</span></li>
+</ul>
+</section>
+<section
+id="program-3084-first-spatially-resolved-characterization-of-a-radio-driven-outflow-at-z6"
+class="level2">
+<h2>(28) Program 3084: First spatially resolved characterization of a
+radio-driven outflow at z~6</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): P352-15.</li>
+<li>Physical type: <strong>radio-loud quasar with jet-driven
+outflow</strong>.</li>
+<li>Redshift : 5.83.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP.</li>
+<li>Science Time: ~13.97h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用该观测数据的论文</p>
+<ul>
+<li>Properties: <span class="math inline">\(M_{\rm
+BH}\sim10^9\,M_\odot\)</span></li>
+</ul>
+</section>
+<section
+id="program-5192-the-first-multi-scale-and-multi-phase-characterization-of-black-hole-feedback-at-z6"
+class="level2">
+<h2>(29) Program 5192: The first multi-scale and multi-phase
+characterization of black hole feedback at z&gt;6</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J0923+0402.</li>
+<li>Physical type: <strong>low-ionization broad-absorption-line
+quasar</strong>.</li>
+<li>Redshift: 6.626.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395M/F290LP.</li>
+<li>Science Time: ~7.1h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用这个观测的论文</p>
+<ul>
+<li>Properties: <span class="math inline">\(\log(M_{\rm
+BH}/M_\odot)=9.4,\log(L_{\rm bol}/{\rm erg\,s^{-1}})=47.5\)</span>,
+有延伸达 15 kpc、包裹着整个宿主星系的巨型 [CII] 气体晕</li>
+</ul>
+</section>
+<section
+id="program-4877-the-host-galaxy-environment-and-hot-dust-emission-of-the-first-known-extremely-luminous-obscured-agn-at-z6"
+class="level2">
+<h2>(30) Program 4877: The Host Galaxy, Environment, and Hot Dust
+Emission of the First Known Extremely-Luminous Obscured AGN at
+z&gt;6</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): COS-87259.</li>
+<li>Physical type: <strong>obscured hyperluminous radio-loud AGN with
+dust-obscured starburst</strong>.</li>
+<li>Redshift: 6.853.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU + MIRI imaging(F560W,
+F770W,F1000W,F1130W,F1280W,F1500W,F1800W,F2100W,F2550W) + NIRCam
+WFSS(F410M). Grating/filter: PRISM/CLEAR.</li>
+<li>Science Time: ~7.21h</li>
+<li>Available indicators: N2; O3N2; R23; R3; O2; Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用该观测数据的论文</p>
+<ul>
+<li>properties: <span class="math inline">\(M_*\sim
+10^{10.24}{-}10^{11.2}\,M_\odot,L_{IR}\sim
+9\times10^{12}\,L_\odot,SFR\sim1300\,M_\odot\,{\rm
+yr^{-1}}\)</span></li>
+</ul>
+</section>
+<section
+id="program-4912-mapping-the-multi-phase-outflows-in-z6-luminous-quasars"
+class="level2">
+<h2>(31) Program 4912: Mapping the multi-phase outflows in z~6 luminous
+quasars</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): J1148+5251; P183+05; J1319+0950;
+J2310+1855; J2054-0005.</li>
+<li>Physical type: <strong>z~6 luminous quasar outflow
+sample</strong>.</li>
+<li>Redshift: 6.003 &lt; z &lt; 6.419.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395H/F290LP.</li>
+<li>Science Time: 15.32h</li>
+<li>Available indicators: N2; O3N2; R3; S2.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用该观测数据的论文</p>
+<ul>
+<li>Properties: <span class="math inline">\(M_{\rm
+BH}\sim3.0\times10^9\,M_\odot\)</span></li>
+</ul>
+</section>
+<section
+id="program-6074-the-first-measurement-of-agn-feedback-in-action-in-the-first-billion-years"
+class="level2">
+<h2>(32) Program 6074: The First Measurement of AGN Feedback in Action
+in the First Billion Years</h2>
+<p><strong>Target.</strong></p>
+<ul>
+<li>Proposal science target(s): COSMOSVLA-J100104.51+020203.6.</li>
+<li>Physical type: <strong>heavily obscured radio-loud AGN
+candidate</strong>.</li>
+<li>Redshift: 7.7.</li>
+</ul>
+<p><strong>JWST setup.</strong></p>
+<ul>
+<li>Instrument: NIRSpec/IFU. Grating/filter: G395M/F290LP.</li>
+<li>Science Time: 6h</li>
+<li>Available indicators: R23; R3; O2; Ne3O2; O32.</li>
+</ul>
+<p><strong>Published results and properties.</strong>
+目前没有使用该观测数据的论文</p>
+<ul>
+<li>Properties: <span
+class="math inline">\(\log(M_\star/M_\odot)=11.92\pm0.50,M_{\rm
+BH}\gtrsim6.4\times10^8\,M_\odot\)</span></li>
+</ul>
+</section>
+</section>
+<section id="recommendation" class="level1">
+<h1>7. Recommendation</h1>
+<p>A 类用于建立方法基准；B/C 类用于寻找新的 star-forming galaxy
+metallicity-gradient science；D 类需要注意 AGN 的影响</p>
+<section id="published-benchmarks" class="level2">
+<h2>7.1 Published benchmarks</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>program ID</th>
+<th>role</th>
+<th>why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3045</td>
+<td>Standard gas-phase gradient benchmark</td>
+<td>20 个 <span class="math inline">\(4&lt;z&lt;6\)</span> main-sequence
+galaxies 已经得到 gas-phase abundance gradients，适合作为
+reduction、line fitting 和 calibration comparison 的方法基准。</td>
+</tr>
+<tr>
+<td>1893</td>
+<td>Early-universe resolved gradient benchmark</td>
+<td><span class="math inline">\(z\sim6-8\)</span> systems 已有二维
+emission-line maps 和 radial metallicity gradients，适合研究
+merger、outflow 和 mixing 对早期化学结构的影响。</td>
+</tr>
+<tr>
+<td>2959</td>
+<td>High-redshift calibration stress test</td>
+<td><span class="math inline">\(z\sim7.6\)</span> low-mass galaxies 已有
+resolved maps；strong-line gradient 接近 0，而 direct-<span
+class="math inline">\(T_{\rm e}\)</span> 得到 <span
+class="math inline">\(\nabla_Z=-0.11\pm0.03\ {\rm
+dex\,kpc^{-1}}\)</span>，可检验高红移 strong-line calibration。</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="b-类-non-lensed-galaxy-recommendations" class="level2">
+<h2>7.2 B 类: non-lensed galaxy recommendations</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>rank</th>
+<th>program ID</th>
+<th>target</th>
+<th>useful indicators</th>
+<th>why recommended</th>
+<th>main caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1626</td>
+<td>REBELS <span class="math inline">\(z&gt;6.5\)</span> galaxy
+sample</td>
+<td>R23; R3; O2; Ne3O2; O32; target-dependent N2</td>
+<td>非透镜高红移样本，适合统计性 resolved enrichment 分析，并可连接已有
+integrated metallicity 结果。</td>
+<td>PRISM 分辨率有限；H<span class="math inline">\(\alpha\)</span>
+diagnostics 只能用于较低红移子样本。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5761</td>
+<td>ALMA-J081740.86+135138.2</td>
+<td>N2; S2</td>
+<td>旋转盘几何结构清楚，适合径向 profile 和 gradient 验证。</td>
+<td>indicator 较少，主要依赖 N2；需谨慎处理 N/O 和 calibration
+scatter。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6221</td>
+<td>LAB1IFU1</td>
+<td>N2; O3N2; R3; S2</td>
+<td>适合研究 LAB 环境中的 line map、component contrast 和 abundance
+structure。</td>
+<td>不是普通 disk-gradient
+样本，应优先讨论环境和不同组件之间的差异。</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="c-类-lensed-galaxy-recommendations" class="level2">
+<h2>7.3 C 类: lensed galaxy recommendations</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>rank</th>
+<th>program ID</th>
+<th>target</th>
+<th>useful indicators</th>
+<th>why recommended</th>
+<th>main caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3433</td>
+<td>MS1358-ARC; MACS0940-ARC; RCS0224-ARC</td>
+<td>N2; O3N2; R23; R3; O2; Ne3O2; O32; S2</td>
+<td>多个 clumpy strongly lensed arcs，indicator 丰富，最适合
+source-plane clump-scale abundance mapping。</td>
+<td>需要 lens model、source-plane reconstruction 和 clump
+matching。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5119</td>
+<td>ELG1+ELG2</td>
+<td>R23; R3; O2; Ne3O2; O32</td>
+<td>适合比较 merger components 和 H<span
+class="math inline">\(\alpha\)</span>-bright bridge 的 abundance
+contrast。</td>
+<td>不应强行解释为单一径向 gradient。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5883</td>
+<td>CWeb-EinsteinRing background source at <span
+class="math inline">\(z=5.1043\)</span></td>
+<td>R23; R3; O2; Ne3O2; O32</td>
+<td>高放大背景源适合 source-plane abundance mapping。</td>
+<td>只讨论背景源；需要可靠 lens reconstruction。</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="d-类-agn-feedback-recommendations" class="level2">
+<h2>7.4 D 类: AGN / feedback recommendations</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>rank</th>
+<th>program ID</th>
+<th>target</th>
+<th>useful indicators</th>
+<th>why recommended</th>
+<th>main caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1712</td>
+<td>W2246-0526</td>
+<td>N2; O3N2; R23; R3; O2; Ne3O2; O32; S2</td>
+<td>Obscured quasar merger，适合比较 host、companions 和不同 ionization
+zones。</td>
+<td>必须做 AGN subtraction等处理。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2028</td>
+<td>J0910Q protocluster system</td>
+<td>N2; O3N2; R3; S2</td>
+<td>适合研究 NLR、host 和 companions 的 ionization-abundance
+structure。</td>
+<td>Quasar PSF 和 NLR contamination 明显。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4877</td>
+<td>COS-87259</td>
+<td>R23; R3; O2; Ne3O2; O32</td>
+<td>PRISM/CLEAR 覆盖广，适合探索 obscured radio-loud AGN 的
+abundance-ionization mapping。</td>
+<td>AGN 和 dusty starburst 污染需要联合建模。</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    </main>
+  </div>
+</body>
+</html>
