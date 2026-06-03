@@ -1,53 +1,7 @@
-# JWST/NIRSpec IFU Metallicity-gradient Report
+# [JWST/NIRSpec IFU 项目汇总](https://sherlockhomel.github.io/jwst-ifu-metallicity-report/)
 
-Advisor-facing GitHub Pages site generated from a repository-local mirror of
-the formal Markdown report.
+这个项目整理了一批具有 JWST/NIRSpec IFU 观测的program，目标是评估哪些样本适合进一步做二维金属丰度图、径向金属梯度。
 
-## Update the report mirror
+报告首先总结常用 gas-phase metallicity indicators，包括 N2、O3N2、R23、R3、O2、O32、Ne3O2、S2 和 direct-$T_{\rm e}$ method，并给出它们在 NIRSpec IFU 不同 grating/filter 下的红移覆盖范围。随后按科学用途整理 program：已有发表金属梯度或 line map 的 benchmark 样本、尚未做金属梯度但 indicator 条件较好的普通 galaxy、透镜 galaxy，以及需要谨慎处理 AGN 的样本。
 
-The editable report lives in `../report/`. Regenerate its PDF with the same
-Markdown list semantics used by the website:
-
-```bash
-pandoc ../report/report_formal.md \
-  -o ../report/report_formal.pdf \
-  --from markdown+lists_without_preceding_blankline+raw_html \
-  --resource-path=../report \
-  --pdf-engine=xelatex \
-  -H ../report/pdf_table_style.tex \
-  -V mainfont='Hiragino Sans GB' \
-  -V CJKmainfont='Hiragino Sans GB' \
-  -V geometry:margin=0.55in
-```
-
-Then sync the Markdown, checked PDF, and figures into this repository:
-
-```bash
-python3 sync_report.py --report-dir ../report
-```
-
-## Build locally
-
-Install Pandoc and the Python dependency first:
-
-```bash
-python3 -m pip install -r requirements.txt
-```
-
-Then build and serve the static artifact:
-
-```bash
-python3 build_site.py --output _site
-python3 -m http.server 8765 --directory _site
-```
-
-Then open `http://localhost:8765`.
-
-## Publish
-
-Push the repository to `main`. The GitHub Pages workflow builds `_site/` from
-the mirrored sources and publishes it automatically. Set the repository Pages
-source to **GitHub Actions**.
-
-The downloadable PDF is synced from the locally checked formal report instead
-of being rebuilt on the Linux runner.
+每个 program 条目包括 proposal target、物理类型、红移、JWST setup、可用 metallicity indicators、已发表论文中的主要数据处理方式、主要结论和关键 physical properties。最后给出一组优先推荐样本，用于后续开展 IFU resolved metallicity gradient 或 abundance mapping 分析。
