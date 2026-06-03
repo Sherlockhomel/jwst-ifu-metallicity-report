@@ -8,6 +8,8 @@ mainfont: "Hiragino Sans GB"
 CJKmainfont: "Hiragino Sans GB"
 ---
 # Executive Summary
+汇总了JWST Cycle1-4中使用到NIRSpec IFU、数据公开、可以覆盖到strong-line indicator的program。
+
 分类采用四类:
 - A 类：已有论文利用观测结果得到金属梯度/emission line map;
 - B 类：还没有 published 关注金属梯度/line map的非lensed galaxy;
